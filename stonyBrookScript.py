@@ -1,3 +1,9 @@
+# Kyle Marcus Enriquez
+#
+# This program uses PLY to read tokens as operators.
+# This program takes as input a text file with line-by-line instructions and executes them.
+# The tokens lists shows all that this program is capable of for now.
+
 import sys
 import math
 import ply.lex as lex
