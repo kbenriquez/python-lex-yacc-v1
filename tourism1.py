@@ -11,8 +11,8 @@
 #   preferences(o) - the total number of preferences from all the people from people(n) where o is a
 #       positive non-zero integer.
 #   order(person, location1, location2) - the preference of one person of one location over another.
-#       person must be an integer 0 > person >= n, location1 must be an integer
-#       0 > location1 >= m and location2 must be an integer 0 > location2 >= locations(m) NOT
+#       person must be an integer 0 < person <= n, location1 must be an integer
+#       0 > location1 >= m and location2 must be an integer 0 < location2 <= locations(m) NOT
 #       including location1. This input must be repeated m times.
 
 import sys
