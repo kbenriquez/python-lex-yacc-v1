@@ -3,10 +3,7 @@ import math
 import ply.lex as lex
 
 filename = sys.argv[1]
-
 f = open(filename, "r")
-
-
 
 #RESERVED TOKENS
 reserved = {
@@ -15,9 +12,7 @@ reserved = {
     'not' : 'NOT'
 }
 
-
 # TOKENS
-# RENAMED 'NAME' TO STRING
 tokens = (
     'QUOTATIONS', 'STRING', 'NUMBER',
     'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'EQUALS',
@@ -28,7 +23,6 @@ tokens = (
 )
 
 # Tokens
-
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -52,10 +46,9 @@ t_GREATEREQUAL = r'>='
 # DICTIONARY OF NAMES
 names = {}
 
-
 def t_ID(t):
     r'and|or|not'
-    t.type = reserved.get(t.value,'ID')    # Check for reserved words
+    t.type = reserved.get(t.value,'ID')
     return t
 
 def t_NUMBER(t):
@@ -70,24 +63,19 @@ def t_NUMBER(t):
         t.value = 0
     return t
 
-
 # Ignored characters
 t_ignore = " \t"
-
 
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
 
-
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-
 # Build the lexer
 import ply.lex as lex
-
 lex.lex()
 
 # Parsing rules
@@ -108,7 +96,6 @@ precedence = (
 def p_statement_assign(t):
     'statement : NAME EQUALS expression'
     names[t[1]] = t[3]
-
 
 def p_statement_expr(t):
     '''statement : expression
@@ -132,8 +119,6 @@ def p_expression_binop(t):
                   | expression AND expression
                   | expression OR expression
                   | NOT expression'''
-
-    #print("operator is ", t[2])
     if t[2] == '+':
         t[0] = t[1] + t[3]
     elif t[2] == '-':
@@ -191,7 +176,6 @@ def p_expression_binop(t):
         t[0] = 1
     elif t[0] == False:
         t[0] = 0
-
 
 def p_expression_group(t):
     'expression : LPAREN expression RPAREN'
